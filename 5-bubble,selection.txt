@@ -1,0 +1,57 @@
+L=[]
+def get():
+    n=int(input("Enter Number of First Year Students: "))
+    for i in range(n):
+        no=float(input("Enter their Percentage: "))
+        L.append(no)
+
+def bubble():
+    cnt=1
+    for i in range(len(L)-1,0,-1):
+        #print("Iteration No:", cnt)
+        for j in range(0,i):
+            if(L[j]>L[j+1]):
+                L[j], L[j + 1] = L[j + 1], L[j]
+        cnt+=1
+    print(L)
+
+def sel():
+    for i in range(len(L)):
+        min=i
+        #print("\nIteration No:",i)
+        for j in range(i+1,len(L)):
+            if L[j]<L[min]:
+                min=j
+        L[i],L[min]=L[min],L[i]
+    print(L,end="\n")
+
+def top():
+    for i in range(len(L)):
+        min=i
+        for j in range(i+1,len(L)):
+            if L[j]<L[min]:
+                min=j
+        L[i],L[min]=L[min],L[i]
+    t5=[]
+    print("\n****Top five scores****=")
+    t5=L[::-1]
+    print(t5[:5:])
+if __name__ == '__main__':
+    get()
+    while(1):
+        print("\n1: Selection Sort")
+        print("2: Bubble Sort")
+        print("3: Top 5 Scores")
+        print("4: Exit")
+        ch=int(input("Enter choice: "))
+        if(ch==1):
+            print("")
+            sel()
+        if(ch==2):
+            print("")
+            bubble()
+        if(ch==3):
+            top()
+        if(ch==4):
+            exit(code=True)
+        
