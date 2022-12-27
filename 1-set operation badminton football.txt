@@ -1,0 +1,52 @@
+list1=['a','b','c','d'] #cricket
+list2=['b','e','h']     #badminton
+list3=['a','c','f','h'] #football
+r1=[]
+r2=[]
+r3=[]
+r4=[]
+r=[]
+
+def fun1(): # who play both cricket and badminton
+    for i in list1:
+        for j in list2:
+            if i==j:
+                r1.append(i)
+    return r1
+
+def fun2(): # either cricket or badminton but not both
+    for i in list1:
+        if i not in list2:
+            r2.append(i)
+    for j in list2:
+        if j not in list1:
+            r2.append(j)
+    return r2 
+
+def fun3(): # neither cricket nor badminton
+    r=[]
+    for i in list3:
+        if i not in list1:
+            r.append(i)
+    for j in r:
+        if j not in list2:
+            r3.append(j)
+    return r3
+
+
+def fun4():
+    for i in list1: # cricket and football but not badminton
+        if i not in list2:
+            r.append(i)
+    for j in r:
+        if j not in list3:
+            r4.append(j)
+    for k in list3:
+        if k not in list2:
+            r4.append(k)
+    return r4
+
+print("Students playing both cricket and badminton:",fun1())
+print("Students playing either cricket or badminton but not both:",fun2())
+print("Students playing neither cricket nor badminton:",fun3())
+print("Students playing cricket or football but not badminton:",fun4())

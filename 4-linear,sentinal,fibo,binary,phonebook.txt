@@ -1,0 +1,109 @@
+#linear search and sentinal search
+
+def l_search(p,n,list1):
+    c=0
+    for i in range(n):
+        if(i==p):
+            print("Roll Number %d did attend the training program."%(p))
+            break
+        else:
+            c=c+1
+
+    if(c==n):
+        print("Roll Number %d did not attend the training program."%(p))
+
+def s_search(p,n,list1):
+    k=0
+    for i in range(n+1):
+        if(list1[i]==p):
+            k=i
+            break
+        
+    if(k==n):
+        print("Roll Number %d did not attend the training program."%(p))
+    elif(k<n):
+        print("Roll Number %d did attend the training program."%(p))
+            
+
+def f_search(i,offset,k,n):
+    i=min(offset+f[k-2],n-1)
+    
+    if(i==offset):
+        return -1
+
+    elif(s==a[i]):
+        return i
+
+    elif(s>a[i]):
+        k=k-1
+        offset=i
+        return f_search(i,offset,k,n)
+
+    elif(s<a[i]):
+        k=k-2
+        return f_search(i,offset,k,n)
+        
+
+def b_search(s,a,h,l):
+    mid=int((h+l)/2)
+
+    if(s==a[mid]):
+        return mid
+
+    elif(s<a[mid]):
+        return b_search(s,a,mid-1,l)
+
+    else:
+        return b_search(s,a,h,mid+1)
+
+
+a=[]
+n=int(input("Enter the number of students who attended the program:"))
+for i in range(n):
+    x=int(input("Enter the roll number of the student:"))
+    a.append(x)
+    
+n=len(a)
+print("MENU:\n1.Linear Search\n2.Sentinal Search\n3.Binary Search\n4.Fibonacci Search\n5.Exit")
+while(1):
+    ch=int(input("Enter your choice:"))
+    if(ch==1):
+        print("\nLinear Search:")
+        p=int(input("roll no?"))
+        l_search(p,n,a)
+
+    elif(ch==2):
+        print("\nSentinal Search:")
+        p=int(input("roll no?"))
+        a.append(p)
+        s_search(p,n,a)
+
+    elif(ch==3):
+        print("Binary Search:")
+        l=0
+        h=n-1
+        s=int(input("roll no?"))
+        x= b_search(s,a,h,l)
+        print("Roll Number %d did attend the program and its index is %d."%(s,x))
+
+    elif(ch==4):
+        print("Fibonacci Search:")
+        f=[0,1,1,2,3,5,8,13,21,34,55,89]
+        offset=-1
+        i=0
+        k=0
+        while(n>=f[i]):
+            i=i+1
+        k=i
+        m=f_search(i,offset,k,n)
+        if(m>=0):
+            print("Roll Number %d did attend the program at index %d."%(s,m))
+        else:
+            print("Roll Number %d did not attend the program."%s)
+
+    elif(ch==5):
+        print("Exit")
+        break
+
+    else:
+        print("Invalid Choice!")
